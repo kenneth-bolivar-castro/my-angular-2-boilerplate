@@ -18,6 +18,7 @@
 	<body>
 		<app>Loading...</app>
 		<script>
+		
 		  System.config({
 		    packages: {        
 		      './src/js': {
@@ -26,6 +27,7 @@
 		      }
 		    }
 		  });
+
 		  System.import('src/js/bootstrap.app').then(null, console.error.bind(console));
 		</script>
 	</body>

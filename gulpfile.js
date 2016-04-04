@@ -37,9 +37,23 @@ gulp.task('build-app', function() {
 
     return tsResult.js
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.js.dest));
+        .pipe(gulp.dest(config.js.dest))
+        .pipe(connect.reload());
 });
 
-// gulp.task('default', function() {
+gulp.task('reload', function(){
+	return gulp.src(config.staticIndex)
+		.pipe(connect.reload());
+});
 
-// });
+gulp.task('watch', function() {
+	gulp.watch(config.css.watch, ['sass']);
+	gulp.watch(config.js.watch, ['build-app']);
+	gulp.watch(config.appTemplates, ['reload']);
+});
+
+gulp.task('default', defaultTask);
+
+function defaultTask () {
+    runSequence('build-app', 'sass', 'server', 'watch');
+}

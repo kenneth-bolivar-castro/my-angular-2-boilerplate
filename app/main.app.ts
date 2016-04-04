@@ -5,5 +5,5 @@ import { Component } from 'angular2/core';
 	templateUrl: '../../app/main.app.tpl.html'
 })
 export class AppMain {
-
+	
 }

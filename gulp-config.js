@@ -2,6 +2,7 @@ var config = {
 	port: 8000,
 	root: './',
 	staticIndex: './index.html',
+	appTemplates: './app/**/*.html',
 
 	js: {
 		tsFiles: ['./app/**/*.ts'],
