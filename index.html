@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Angular 2 Boilerplate</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="src/css/main.css">
+		<script src="node_modules/es6-shim/es6-shim.min.js"></script>
+	    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+	    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
+	    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+	    <script src="node_modules/systemjs/dist/system.src.js"></script>
+	    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+	    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+	</head>
+	<body>
+		<app>Loading...</app>
+		<script>
+		  System.config({
+		    packages: {        
+		      './src/js': {
+		        format: 'register',
+		        defaultExtension: 'js'
+		      }
+		    }
+		  });
+		  System.import('src/js/bootstrap.app').then(null, console.error.bind(console));
+		</script>
+	</body>
+</html>
