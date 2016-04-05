@@ -10,14 +10,14 @@ var gulp = require('gulp'),
 	tsProject = tsc.createProject('tsconfig.json'),
 	config = require('./gulp-config');
 
-gulp.task('server', function() {
+gulp.task('server-dev', function() {
 	connect.server({
-		root: config.root,
+		root: config.server.dev.root,
 		livereload: true,
-		port: config.port
+		port: config.server.dev.port
 	});
 
-	gulp.src(config.staticIndex).pipe(open({ uri: config.getUri() }));
+	gulp.src(config.staticIndex).pipe(open({ uri: config.getUri('dev') }));
 });
 
 gulp.task('sass', function() {
@@ -55,5 +55,5 @@ gulp.task('watch', function() {
 gulp.task('default', defaultTask);
 
 function defaultTask () {
-    runSequence('build-app', 'sass', 'server', 'watch');
+    runSequence('build-app', 'sass', 'server-dev', 'watch');
 }

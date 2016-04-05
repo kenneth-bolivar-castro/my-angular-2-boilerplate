@@ -1,8 +1,19 @@
 var config = {
-	port: 8000,
-	root: './',
 	staticIndex: './index.html',
+
 	appTemplates: './app/**/*.html',
+
+	server {
+		dev {
+			port: 8000,
+			root: './'
+		},
+
+		dist {
+			port: 3000,
+			root: './dist'
+		}
+	},
 
 	js: {
 		tsFiles: ['./app/**/*.ts'],
@@ -15,10 +26,10 @@ var config = {
 		outputStyle: 'compressed',
 		dest: './src/css',
 		watch: './scss/**/*.scss'
-	},
+	}
 
-	getUri: function(){
-		return 'http://localhost:' + this.port;
+	getUri: function(_env){
+		return 'http://localhost:' + this.server[_env].port;
 	}
 };
 
