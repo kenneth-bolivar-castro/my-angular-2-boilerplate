@@ -4,12 +4,12 @@ var config = {
 	appTemplates: './app/**/*.html',
 
 	server: {
-		dev {
+		dev: {
 			port: 8000,
 			root: './'
 		},
 
-		dist {
+		dist: {
 			port: 3000,
 			root: './dist'
 		}
