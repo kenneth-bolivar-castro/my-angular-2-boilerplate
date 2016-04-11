@@ -3,7 +3,7 @@ var config = {
 
 	appTemplates: './app/**/*.html',
 
-	server {
+	server: {
 		dev {
 			port: 8000,
 			root: './'
@@ -26,7 +26,7 @@ var config = {
 		outputStyle: 'compressed',
 		dest: './src/css',
 		watch: './scss/**/*.scss'
-	}
+	},
 
 	getUri: function(_env){
 		return 'http://localhost:' + this.server[_env].port;
