@@ -2,7 +2,7 @@ import { Component } from 'angular2/core';
 
 @Component({
 	selector: 'app',
-	templateUrl: '../../app/main.app.tpl.html'
+	template: '<h1>Angular 2 Boilerplate</h1>'
 })
 export class AppMain {
 	
