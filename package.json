@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "typings install"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +21,9 @@
     "gulp-tslint": "^4.3.4",
     "gulp-typescript": "^2.12.2",
     "gulp-uglify": "^1.5.3",
-    "run-sequence": "^1.1.5"
+    "run-sequence": "^1.1.5",
+    "typescript": "^1.8.10",
+    "typings":"^0.8.1"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",

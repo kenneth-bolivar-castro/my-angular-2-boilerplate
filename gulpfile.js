@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 	tsc = require('gulp-typescript'),
 	runSequence = require('run-sequence'),
 	inlineNg2Template = require('gulp-inline-ng2-template'),
-	config = require('./gulp-config');
+	config = require('./gulp.config');
 
 gulp.task('server', function() {
 	var serverConfig = config.server;
