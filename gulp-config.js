@@ -1,35 +1,36 @@
 var config = {
-	staticIndex: './index.html',
-
-	appTemplates: './app/**/*.html',
-
 	server: {
-		dev: {
-			port: 8000,
-			root: './'
-		},
-
-		dist: {
-			port: 3000,
-			root: './dist'
+		port: 8000,
+		root: './',
+		liveReload: true,
+		getUri: function(){
+			return 'http://localhost:' + this.port;
 		}
 	},
 
-	js: {
-		tsFiles: ['./app/**/*.ts'],
-		watch: ['./app/**/*.ts'],
+	html: {
+		src: {
+			index: './index.html',
+			appTemplates: './app/**/*.html'
+		}
+	},
+
+	ts: {
+		src: ['./app/**/*.ts'],
 		dest: './src/js'
 	},
 
-	css: {
-		sassMain: './scss/main.scss',
+	scss: {
+		main: './scss/main.scss',
 		outputStyle: 'compressed',
 		dest: './src/css',
 		watch: './scss/**/*.scss'
 	},
 
-	getUri: function(_env){
-		return 'http://localhost:' + this.server[_env].port;
+	watch: {
+		ts: './app/**/*.ts',
+		scss: './scss/**/*.scss',
+		html: ['./app/**/*.html', './index.html']
 	}
 };
 
