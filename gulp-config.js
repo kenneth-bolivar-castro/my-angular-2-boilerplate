@@ -21,16 +21,28 @@ var config = {
 	},
 
 	scss: {
-		main: './scss/main.scss',
-		outputStyle: 'compressed',
-		dest: './src/css',
-		watch: './scss/**/*.scss'
+		css: {
+			main: './scss/main.scss',
+			outputStyle: 'compressed',
+			dest: './src/css'
+		},
+
+		app: {
+			src: './app/**/*.scss',
+			outputStyle: 'compressed',
+			dest: './'
+		}
 	},
 
 	watch: {
 		ts: './app/**/*.ts',
-		scss: './scss/**/*.scss',
-		html: ['./app/**/*.html', './index.html']
+		template: './app/**/*.html',
+		indexHtml: './index.html',
+
+		scss: {
+			css: './scss/**/*.scss',
+			app: './app/**/*.scss'
+		}
 	}
 };
 

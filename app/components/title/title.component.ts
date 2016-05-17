@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-Component({
-	selector: 'title',
-	templateUrl: '../../app/components/title/title.tpl.html'
+@Component({
+	selector: 'home-title',
+	templateUrl: './components/title/title.tpl.html',
+	styleUrls: [ 'components/title/title.style.css' ]
 })
 export class Title {
-	message: String = 'Home page';
+	message: String = 'My Angular 2 Boilerplate';
 }
