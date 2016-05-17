@@ -7,49 +7,58 @@ var gulp = require('gulp'),
 	sourcemaps = require('gulp-sourcemaps'),
 	tsc = require('gulp-typescript'),
 	runSequence = require('run-sequence'),
-	tsProject = tsc.createProject('tsconfig.json'),
 	config = require('./gulp-config');
 
 gulp.task('server', function() {
+	var serverConfig = config.server;
+
 	connect.server({
-		root: config.root,
-		livereload: true,
-		port: config.port
+		root: serverConfig.root,
+		livereload: serverConfig.liveReload,
+		port: serverConfig.port
 	});
 
-	gulp.src(config.staticIndex).pipe(open({ uri: config.getUri() }));
+	gulp.src(config.html.src.index).pipe(open({ uri: serverConfig.getUri() }));
 });
 
 gulp.task('sass', function() {
-	return gulp.src(config.css.sassMain)
+	var configScss = config.scss;
+
+	return gulp.src(configScss.main)
 	    .pipe(sourcemaps.init())
-	    .pipe(sass({outputStyle: config.css.outputStyle}).on('error', sass.logError))
+	    .pipe(sass({outputStyle: configScss.outputStyle}).on('error', sass.logError))
 	    .pipe(autoprefixer())
 	    .pipe(sourcemaps.write('./'))
-	    .pipe(gulp.dest(config.css.dest))
+	    .pipe(gulp.dest(configScss.dest))
 	    .pipe(connect.reload());
 });
 
 gulp.task('build-app', function() {
-    var tsResult = gulp.src(config.js.tsFiles)
+	var tsProject = tsc.createProject('tsconfig.json'),
+		configTs = config.ts;
+
+    var tsResult = gulp.src(configTs.src)
         .pipe(sourcemaps.init())
         .pipe(tsc(tsProject));
 
     return tsResult.js
+    	.pipe(uglify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.js.dest))
+        .pipe(gulp.dest(configTs.dest))
         .pipe(connect.reload());
 });
 
 gulp.task('reload', function(){
-	return gulp.src(config.staticIndex)
+	return gulp.src(config.html.src.index)
 		.pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
-	gulp.watch(config.css.watch, ['sass']);
-	gulp.watch(config.js.watch, ['build-app']);
-	gulp.watch(config.appTemplates, ['reload']);
+	var configWatch = config.watch;
+
+	gulp.watch(configWatch.css, ['sass']);
+	gulp.watch(configWatch.ts, ['build-app']);
+	gulp.watch(configWatch.html, ['build-app']);
 });
 
 gulp.task('default', defaultTask);
